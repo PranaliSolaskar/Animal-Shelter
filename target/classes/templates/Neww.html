@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link rel="stylesheet" href="css/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/dataTables.bootstrap4.min.css"/>
+    <link rel="icon" th:href="@{/img/logo.svg}" type="image/x-icon"/>   
+</head>
+<body>
+<section class="home" id="home">
+    <div class="container">
+        <div class="row min-vh-100 align-items-center ">
+            <div class="content">
+                <h3 class="head-text">
+                    Adopt your life partner.
+                    <b>de vida.</b>
+                </h3>
+                <p class="p-text">
+                   Adopt one of the thousands of pets in the city today adoption and bring life back to a being, who compares... tea It will bring back life a thousand times over. =)
+                </p>
+                <a th:href="@{/pets/filter}" class="link-btn p-3 p-sm-4 p-md-4">See animals for adoption<i
+                        class="fa-solid fa-paw ml-3"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="carrusel" id="carrusel">
+    <h1 class="heading">Our Blog!</h1>
+    <div class="swiper-container home-slider">
+        <div class="swiper-wrapper wrapper">
+
+            <div th:if="${mainNews.isEmpty()}" class="col-12" style="font-size: 20px">
+                <div class="card p-5 d-flex justify-content-center align-content-center">
+                    <p class="text-center m-0">No blogs to show</p>
+                </div>
+            </div>
+
+            <div th:unless="${mainNews.isEmpty()}" class="swiper-slide slide" th:each="news : ${mainNews}">
+                <div class="content">
+                    <div class="p-2">
+                        <div class="row ml-2 mt-1">
+                            <span class="ml-3"><i class="fa-solid fa-user-pen mr-2"></i>By:</span>
+                            <span class="ml-1" th:text="${news.user.profile.name}"/>
+                            <span class="ml-3 date"><i class="fa-solid fa-calendar mr-2"></i></span>
+                            <span class="date" th:text="${#temporals.format(news.createdAt,'dd-MMM-yyyy')}"/>
+                        </div>
+                    </div>
+                    <h3 th:text="${news.title}"></h3>
+                    <a th:href="@{/blog/{id}(id=${news.id})}" class="link-btn">Leer Read More<i
+                            class="fa-solid fa-book-open-reader ml-4"></i></a>
+                </div>
+                <div class="image">
+                    <img class="card-img-top img-fluid blog-img" th:src="${news.image}" alt="banner">
+                </div>
+            </div>
+        </div>
+        <div th:if="${!mainNews.isEmpty()}" class="swiper-button-prev"></div>
+        <div th:if="${!mainNews.isEmpty()}" class="swiper-button-next"></div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="container">
+        <h2 class="heading">About Us</h2>
+        <div class="row align-items-center">
+            <div class="col-md-6 image">
+                <img th:src="@{/img/about-img.jpg}" class="w-100"/>
+            </div>
+            <div class="col-md-6 content mt-4">
+                <h3>It pains us to see angels ignored, humiliated and suffering..</h3>
+                <p>
+                   AdoptaMe is a digital platform that brings together volunteers as animal protectors and Adopters looking for Adopt a pet.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="adopt" id="adopt">
+    <h1 class="heading mb-4">Why Adopt ??</h1>
+    <div class="row">
+        <div class="col-xl-12 col-xxl-5 d-flex box-container px-5">
+            <div class="w-100">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-4 card-container mt-4">
+                        <div class="box">
+                            <img th:src="@{/img/icon-1.svg}" alt=""/>
+                            <h3>Unique experience</h3>
+                            <p>
+                                
+Adopting a pet is a once-in-a-lifetime experience for any human being. Animals are beings who know how to love Beyond measure and very kind.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 card-container mt-4">
+                        <div class="box">
+                            <img th:src="@{/img/icon-2.svg}" alt=""/>
+                            <h3>Infinite happiness</h3>
+                            <p>
+                                It brings a feeling of inexplicable happiness, even more so When we know that this act of love will be saving a Angel.
+
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 card-container mt-4">
+                        <div class="box">
+                            <img th:src="@{/img/icon-3.svg}" alt=""/>
+                            <h3>Do it for them</h3>
+                            <p>
+                                There are more than 60 million animals on the street in Latin America, suffering hunger, cold and abuse.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 card-container mt-4">
+                        <div class="box">
+                            <img th:src="@{/img/icon-4.svg}" alt=""/>
+                            <h3>They don't judge you</h3>
+                            <p>
+
+Animals are beings that know how to love without measure and very Kind.                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 card-container mt-4">
+                        <div class="box">
+                            <img th:src="@{/img/icon-5.svg}" alt=""/>
+                            <h3>It's healthy</h3>
+                            <p>
+                                Having a pet has a positive impact on your health physical and emotional.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 card-container mt-4">
+                        <div class="box">
+                            <img th:src="@{/img/icon-6.svg}" alt=""/>
+                            <h3>You grow properly</h3>
+                            <p>It encourages trust, empathy and personal motivation..</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="process">
+    <h1 class="heading">ADOPTION PROCESS</h1>
+    <div class="box-container container">
+        <div class="row">
+            <div class="p-2 col-sm-12 col-md-6 col-lg-4">
+                <div class="box">
+                    <img class="img-fluid" th:src="@{/img/process-1.png}"/>
+                    <h3>1.- Find your type</h3>
+                    <p>
+                        Make a visit to the adoption center where you can meet personally to your new friend.
+                    </p>
+                </div>
+            </div>
+            <div class="p-2 col-sm-12  col-md-6 col-lg-4">
+                <div class="box">
+                    <img class="img-fluid" th:src="@{/img/process-2.png}"/>
+                    <h3>2.- Start a great adventure</h3>
+                    <p>Receive him in his new home with all the love</p>
+                </div>
+            </div>
+            <div class="p-2 col-sm-12  col-md-12 col-lg-4">
+                <div class="box">
+                    <img class="img-fluid" th:src="@{/img/process-3.png}"/>
+                    <h3>3.- Give him all your love</h3>
+                    <p>
+                        Remember to do activities with him, such as going to the park, playing with him, teach him new things and more.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

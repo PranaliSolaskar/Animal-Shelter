@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link href="https://cdn.jsdeliver.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/rescue.css" type="text/css">
+	 <link rel="stylesheet" href="css/login.css" />
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	  
+</head>      
+<body>
+		<div class="registeration">
+			<div class="registeration_container">
+				<div class="registeration_image">
+					<div class="overlay"></div>
+						<h1 class="title">Get<br />In Touch <br /> With us</h1>
+						<p class="site">www.Helpadoptus.com</p>
+				</div>
+		<form th:action="@{/rescue}" th:object = "${rescue}" method="POST" class="registeration_form" >
+			<h1 class="title">Fill The Rescue Form </h1>
+			<div class="row">
+				<div class="col-sm-6 mb-4">
+					<label for="Name" class="form-label">Your Name</label>
+					<input type="text" class="form-control" th:field = "*{fName}" id="fName" name="firstName" />
+ 				</div>	
+ 				<div class="col-sm-6 mb-4">
+ 					<label for="lastName" class="form-label">Phone Number</label>
+					<input type="text" class="form-control" th:field = "*{Phoneno}" id="Phoneno" name="Phonenum" />
+ 				</div>
+ 				<div class="col-sm-6 mb-4">
+					<label for="email" class="form-label">Animal Type</label>
+					<input type="text" class="form-control" th:field = "*{Atype}" id="Atype"  name="animal_type" />
+				</div>
+				<div class="col-sm-6 mb-4">
+ 					<label for="lastName" class="form-label">No of Animal</label>
+					<input type="text" class="form-control" th:field = "*{No_ofa}" id="No_ofa" name="No_of_animal" />
+ 				</div>
+ 				<div class="col-sm-6 mb-4">
+					<label for="email" class="form-label">Extra Information</label>
+					<input type="text" class="form-control" th:field = "*{minfo}" id="minfo" name="more_info" />
+ 				</div>
+ 				<div class="col-sm-6 mb-4">
+ 					<label for="lastName" class="form-label">Address</label>
+					<input type="text" class="form-control"th:field = "*{address}" id="addeess" name="address" />
+ 				</div>
+ 				<div class="col-sm-12 mb-4">
+	 				<div id="captcha" class="d-flex justify-content-center justify-content-sm-end" >
+	 				</div>
+	 			</div>
+	 			<div class="col-sm-12 mb-4">
+	 				<input type="submit" class="btn btn-dark w-100" value="Sign Up" />
+ 			</div>
+ 		</form>
+		</div>
+		</div>
+		<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+		 async defer>
+					</script>
+					<script type="text/javascript">
+					var onloadCallback = function() {
+						grecaptcha.render('captcha', { 'sitekey': '6Ld2uq@JAAAAADmlziljhnzh_vIB Jkbdj205gsEE'})
+					}
+		</script>	
+		<script>
+        $(document).ready(function() {
+            $('#rescue').submit(function(event) {
+                event.preventDefault();
+                var form = $(this);
+                var url = form.attr('action');
+
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: form.serialize(),
+                    success: function(response) {
+                        // Display success message in a Bootstrap modal
+                        $('#successModal .modal-body').text(response);
+                        $('#successModal').modal('show');
+                    },
+                    error: function(xhr) {
+                        // Handle error cases
+                        console.log(xhr);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Bootstrap Modal -->
+    <div id="successModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registration Successful</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+		
+</body>
+</html>

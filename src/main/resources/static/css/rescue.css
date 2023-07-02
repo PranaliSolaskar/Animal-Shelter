@@ -1,0 +1,110 @@
+@charset "ISO-8859-1";
+body{
+	background-color:lightblue;
+	background-image: url(https://t3.ftcdn.net/jpg/04/26/25/78/360_F_426257895_zXR9mG3MFiDZdgecONRYCHRV4IfukJea.jpg);
+	background-size:cover;
+	background-repeat:no-repeat;
+	height:100vh;
+}
+.registeration{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	overflow:hidden;
+	background-color:#A44CE6;
+	width:80%;
+	box-shadow:50px 5px 10px #545454;
+	border-radius:10px;
+}
+
+.registeration_container{
+	display:flex;
+	min-height:600px;
+}
+.registeration_image
+{
+	background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyvNUf-wRdCDJwnuAsT92BYBHNgW0BjeUAuA&usqp=CAU');
+	background-size:cover;
+	background-position:center;
+	flex-basis:40%;
+	position:relative;
+	
+		
+}
+
+@media(min-width:768px)
+{
+	.registration_image{
+		display:block
+	}
+}
+
+.registeration_image .title
+{
+	color:#fff;
+	font-size:70px;
+	position:absolute;
+	top:100px;
+	left:20px;
+}
+
+.registeration_image .site
+{
+	color:#fff;
+	position:absolute;
+	bottom:10px;
+	left:20px;
+	font-size:14px;
+}
+
+.registeration_image .overlay
+{
+	background-color:rgba(0,0,0,.5);
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%
+}
+
+.registeration_form
+{
+	padding:60px 15px;	
+}
+
+@media (min-width:768px)
+{
+	.registeration_form
+	{
+		padding:60px;
+		flex-basis:60%;
+	}
+}
+.registeration_form .title
+{
+	color:#fff;
+	margin-bottom:50px;
+	position:center;
+}
+.registeration_form .title::before{
+	content:'';
+	border-bottom:3px solid #212529;
+	position:center;
+	bottom: -8px;
+	width:20%;
+	border-radius:5px;
+}
+
+.registeration_form .form-label,
+.registeration_form .form-check-label{
+	color:fff;
+}
+
+.registeration_form .form-control
+{
+	background-color:rgba(0,0,0,0.4);
+	color:#fff;
+	border:1px solid #fff;
+}	
+	

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Click Popup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <button id="popupButton" class="btn btn-primary">Click Me!</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#popupButton').click(function() {
+                // Make an AJAX request to the controller method
+                $.ajax({
+                    url: "/button-click",
+                    type: "GET",
+                    success: function(response) {
+                        // Display the success message in a Bootstrap modal
+                        $('#successModal .modal-body').text(response);
+                        $('#successModal').modal('show');
+                    },
+                    error: function(xhr) {
+                        // Handle error cases
+                        console.log(xhr);
+                    }
+                });
+            });
+        });
+    </script>
+
+    <!-- Bootstrap Modal -->
+    <div id="successModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Success</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
